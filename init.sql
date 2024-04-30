@@ -21,7 +21,7 @@ CREATE TABLE bitcoinTransaction (transactionID int, fiatCommission bit,
   primary key (transactionID),
   foreign key (transactionID) references transaction(transactionID));
 
-CREATE TABLE paymentTransaction (transactionID int, fiatAmount int,
+CREATE TABLE paymentTransaction (transactionID int, fiatAmount real,
   primary key (transactionID),
   foreign key (transactionID) references transaction(transactionID));
 
