@@ -2,7 +2,7 @@ use bitcoindb;
 
 CREATE TABLE client (clientID int, name varchar(50), phoneNumber int, cellPhoneNumber int, email varchar(50),
   isGold bit, stateName varchar(20), zipcode int, city varchar(50), stAddress varchar(50), monthlyTrades int, 
-  bitcoin real, fiat real, clientID int, password varchar(50),
+  bitcoin real, fiat real, password varchar(50),
   primary key (clientID),
   foreign key (isGold) references commissionRate(isGold));
 
