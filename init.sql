@@ -37,4 +37,4 @@ INSERT commissionRate
 VALUES (b'0', .02)
 
 INSERT commissionRate
-VALUES (b'0', .01)
+VALUES (b'1', .01)
