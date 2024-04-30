@@ -1,30 +1,47 @@
-from django.shortcuts import render
-from django.http import HttpResponse,HttpResponseRedirect
-from django.contrib.auth import authenticate,login,logout
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.contrib import messages
-from django.urls import reverse
 
+def home(request):
+    return render(request, 'home.html')
 def login(request):
-    return render(request,"login.html")
-
-def clientLoginProcess(request):
-    username=request.POST.get("username")
-    password=request.POST.get("password")
-
-    user=authenticate(request=request,username=username,password=password)
-    if user is not None:
-        login(request=request,user=user)
-        return HttpResponseRedirect(reverse("client"))
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # redirect to a success page.
+            return redirect('/success-url/')
+        else:
+            # Return a 'invalid login' error message.
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
     else:
-        messages.error(request,"Error in Login! Invalid Login Details!")
-        return HttpResponseRedirect(reverse("login"))
+        return render(request, 'login.html')
+
+
 
 def signup(request):
-    return render(request,"signup.html")
+    if request.method == 'POST':
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
 
-def client(request, clientID):
-    return render(request,"client.html")
+        if password1 == password2:
+            try:
+                User.objects.get(username=username)
+                messages.error(request, 'Username already taken')
+                return redirect('signup')
+            except User.DoesNotExist:
+                user = User.objects.create_user(username=username, password=password1)
+                messages.success(request, 'User created successfully')
+                return redirect('login')
+        else:
+            messages.error(request, 'Passwords must match')
+            return redirect('signup')
+    else:
+        return render(request, 'signup.html')
 
-def trader(request, traderID):
-    return render(request,"trader.html")
 
