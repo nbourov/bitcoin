@@ -11,7 +11,7 @@ CREATE TABLE client (clientID int, name varchar(50), phoneNumber int, cellPhoneN
 CREATE TABLE trader (traderID int, name varchar(50), 
   primary key (traderID));
 
-CREATE TABLE transaction (transactionID int, clientID int, traderID int, transactionDate date,
+CREATE TABLE transactions (transactionID int, clientID int, traderID int, transactionDate date,
   primary key (transactionID),
   foreign key (clientID) references client(clientID),
   foreign key (traderID) references trader(traderID));
@@ -32,3 +32,9 @@ CREATE TABLE cancel (transactionID int, cancelDate date, traderID int,
 
 CREATE TABLE commissionRate (isGold bit, rate real, 
   primary key (isGold));
+
+INSERT commissionRate
+VALUES (b'0', .02)
+
+INSERT commissionRate
+VALUES (b'0', .01)
