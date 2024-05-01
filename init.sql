@@ -74,3 +74,9 @@ VALUES (4, 9, 3, '2024-03-30'), (5, 1, 7, '2024-01-01'), (9, 3, 2, '2024-02-05')
 INSERT INTO bitcoinTransaction (transactionID, fiatCommission, commission, fiat, bitcoin)
 VALUES (4, 1, 4.34, 432.48), (2, 0, 2.43, 32.78), (7, 0, 13.67, 4352.43), (5, 0, 33.76, 4387.44),
 (8, 1, 43.90, 798.98);
+
+INSERT INTO paymentTransaction (transactionID, fiatAmount)
+VALUES (1, 34), (2, 17), (3, 47), (4, 23), (5, 12), (6, 20), (7, 19), (8, 5), (9, 30), (10, 18);
+
+INSERT INTO cancel (transactionID, cancelDate, traderID)
+VALUES (3, '2024-04-30', 5), (5, '2024-03-15', 2), (7, '2024-03-29', 9);
