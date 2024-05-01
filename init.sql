@@ -61,7 +61,7 @@ VALUES
 (9, 'Darbie	Sousa',	7135992952, 8162862891, 'dsousa8@nps.gov', 0, 'Texas', 77386, 'Spring'
 '0 1st Center', 5, 0.00392, 345.89, 'TakeNotes345'),
 (10, 'Davine Masic', 3186085177, 3216507379, 'dmasic9@studiopress.com', 1, 'Louisiana', 71105, 'Shreveport',
-'8 Maryland Center', 30, 1.232843, 80211.12);
+'8 Maryland Center', 30, 1.232843, 80211.12, 'DriverSnowBoard9438');
 
 INSERT INTO trader (traderID, name)
 VALUES (1, 'Sam'), (2, 'Dave'), (3, 'Carla'), (4, 'Bob'), (5, 'Tony'), (6, 'Katie'),
