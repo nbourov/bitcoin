@@ -43,15 +43,15 @@ CREATE TABLE transactions (transactionID int, clientID int, traderID int, transa
 CREATE TABLE bitcoinTransaction (transactionID int, fiatCommission bit,
   commission real, fiat real, bitcoin real,
   primary key (transactionID),
-  foreign key (transactionID) references transaction(transactionID));
+  foreign key (transactionID) references transactions(transactionID));
 
 CREATE TABLE paymentTransaction (transactionID int, fiatAmount real,
   primary key (transactionID),
-  foreign key (transactionID) references transaction(transactionID));
+  foreign key (transactionID) references transactions(transactionID));
 
 CREATE TABLE cancel (transactionID int, cancelDate date, traderID int,
   primary key (transactionID),
-  foreign key (transactionID) references transaction(transactionID),
+  foreign key (transactionID) references transactions(transactionID),
   foreign key (traderID) references trader(traderID));
 
 CREATE TABLE commissionRate (isGold bit, rate real, 
