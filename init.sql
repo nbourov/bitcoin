@@ -11,6 +11,34 @@ CREATE TABLE client (clientID int, name varchar(50), phoneNumber int, cellPhoneN
 CREATE TABLE trader (traderID int, name varchar(50), password varchar(50),
   primary key (traderID));
 
+CREATE TABLE transactions (transactionID int, clientID int, traderID int, transactionDate date,
+  primary key (transactionID),
+  foreign key (clientID) references client(clientID),
+  foreign key (traderID) references trader(traderID));
+
+CREATE TABLE bitcoinTransaction (transactionID int, fiatCommission bit,
+  commission real, fiat real, bitcoin real,
+  primary key (transactionID),
+  foreign key (transactionID) references transactions(transactionID));
+
+CREATE TABLE paymentTransaction (transactionID int, fiatAmount real,
+  primary key (transactionID),
+  foreign key (transactionID) references transactions(transactionID));
+
+CREATE TABLE cancel (transactionID int, cancelDate date, traderID int,
+  primary key (transactionID),
+  foreign key (transactionID) references transactions(transactionID),
+  foreign key (traderID) references trader(traderID));
+
+CREATE TABLE commissionRate (isGold bit, rate real, 
+  primary key (isGold));
+
+INSERT commissionRate
+VALUES (b'0', .02);
+
+INSERT commissionRate
+VALUES (b'1', .01);
+
 INSERT INTO client (clientID, name, phoneNumber, cellPhoneNumber, email, isGold, stateName, zipcode, city, 
 stAddress, monthlyTrades, bitcoin, fiat, password)
 VALUES 
@@ -35,34 +63,10 @@ VALUES
 (10, 'Davine Masic', 3186085177, 3216507379, 'dmasic9@studiopress.com', 1, 'Louisiana', 71105, 'Shreveport',
 '8 Maryland Center', 30, 1.232843, 80211.12);
 
-CREATE TABLE transactions (transactionID int, clientID int, traderID int, transactionDate date,
-  primary key (transactionID),
-  foreign key (clientID) references client(clientID),
-  foreign key (traderID) references trader(traderID));
-
 INSERT INTO transactions (transactionID, clientID, traderID, transactionDate)
 VALUES (4, 9, 3, '2024-03-30'), (5, 1, 7, '2024-01-01'), (9, 3, 2, '2024-02-05'),
 (6, 4, 8, '2024-02-10'), (5, 6, 7, '2024-01-13');
 
-CREATE TABLE bitcoinTransaction (transactionID int, fiatCommission bit,
-  commission real, fiat real, bitcoin real,
-  primary key (transactionID),
-  foreign key (transactionID) references transactions(transactionID));
-
-CREATE TABLE paymentTransaction (transactionID int, fiatAmount real,
-  primary key (transactionID),
-  foreign key (transactionID) references transactions(transactionID));
-
-CREATE TABLE cancel (transactionID int, cancelDate date, traderID int,
-  primary key (transactionID),
-  foreign key (transactionID) references transactions(transactionID),
-  foreign key (traderID) references trader(traderID));
-
-CREATE TABLE commissionRate (isGold bit, rate real, 
-  primary key (isGold));
-
-INSERT commissionRate
-VALUES (b'0', .02);
-
-INSERT commissionRate
-VALUES (b'1', .01);
+INSERT INTO bitcoinTransaction (transactionID, fiatCommission, commission, fiat, bitcoin)
+VALUES (4, 1, 4.34, 432.48), (2, 0, 2.43, 32.78), (7, 0, 13.67, 4352.43), (5, 0, 33.76, 4387.44),
+(8, 1, 43.90, 798.98);
