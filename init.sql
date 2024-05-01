@@ -58,7 +58,7 @@ CREATE TABLE commissionRate (isGold bit, rate real,
   primary key (isGold));
 
 INSERT commissionRate
-VALUES (b'0', .02)
+VALUES (b'0', .02);
 
 INSERT commissionRate
-VALUES (b'1', .01)
+VALUES (b'1', .01);
