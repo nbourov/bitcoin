@@ -8,7 +8,7 @@ CREATE TABLE client (clientID int, name varchar(50), phoneNumber int, cellPhoneN
 
 --CREATE TABLE account (monthlyTrades int, bitcoin real, fiat real, clientID int, password varchar(50), primary key (clientID));
 
-CREATE TABLE trader (traderID int, name varchar(50), 
+CREATE TABLE trader (traderID int, name varchar(50), password varchar(50),
   primary key (traderID));
 
 CREATE TABLE transactions (transactionID int, clientID int, traderID int, transactionDate date,
