@@ -40,6 +40,10 @@ CREATE TABLE transactions (transactionID int, clientID int, traderID int, transa
   foreign key (clientID) references client(clientID),
   foreign key (traderID) references trader(traderID));
 
+INSERT INTO transactions (transactionID, clientID, traderID, transactionDate)
+VALUES (4, 9, 3, '2024-03-30'), (5, 1, 7, '2024-01-01'), (9, 3, 2, '2024-02-05'),
+(6, 4, 8, '2024-02-10'), (5, 6, 7, '2024-01-13');
+
 CREATE TABLE bitcoinTransaction (transactionID int, fiatCommission bit,
   commission real, fiat real, bitcoin real,
   primary key (transactionID),
