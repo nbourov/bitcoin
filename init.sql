@@ -63,6 +63,10 @@ VALUES
 (10, 'Davine Masic', 3186085177, 3216507379, 'dmasic9@studiopress.com', 1, 'Louisiana', 71105, 'Shreveport',
 '8 Maryland Center', 30, 1.232843, 80211.12);
 
+INSERT INTO trader (traderID, name)
+VALUES (1, 'Sam'), (2, 'Dave'), (3, 'Carla'), (4, 'Bob'), (5, 'Tony'), (6, 'Katie'),
+(7, 'Steven'), (8, 'Ron'), (9, 'Mack'), (10, 'Lucy');
+
 INSERT INTO transactions (transactionID, clientID, traderID, transactionDate)
 VALUES (4, 9, 3, '2024-03-30'), (5, 1, 7, '2024-01-01'), (9, 3, 2, '2024-02-05'),
 (6, 4, 8, '2024-02-10'), (5, 6, 7, '2024-01-13');
